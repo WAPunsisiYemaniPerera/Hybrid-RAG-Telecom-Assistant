@@ -1,6 +1,8 @@
-# Telecom Support Assistant
+# 📡 Telecom Support Assistant — Smart Telecom Help
 
-> A simple Streamlit-based assistant that answers telecom support questions using uploaded PDF guides and web search as a fallback.
+A friendly Streamlit chat assistant that reads your operator PDFs and answers customer support questions instantly — with web lookup fallback when guides don't contain the answer.
+
+Use it to quickly find tariffs, package details, troubleshooting steps, and hotline info from your internal manuals.
 
 ## Summary
 
