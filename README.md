@@ -1,8 +1,158 @@
-# 📡 Telecom Support Assistant — Smart Telecom Help
+# 📡 Telecom Support Assistant  
+### Smart AI Helpdesk for Telecom Operators
 
-A friendly Streamlit chat assistant that reads your operator PDFs and answers customer support questions instantly — with web lookup fallback when guides don't contain the answer.
+An **AI-powered Telecom Support Assistant** built using **Hybrid Retrieval-Augmented Generation (RAG)**.  
+It answers customer support questions by first searching **internal telecom PDF manuals** and intelligently **falls back to live web search** when the required information is not available in the documents.
 
-Use it to quickly find tariffs, package details, troubleshooting steps, and hotline info from your internal manuals.
+Built with **Streamlit**, **LangChain**, **Google Gemini**, **FAISS**, and **Tavily Web Search**.
+
+---
+
+## 🌟 Highlights
+
+- 🔍 Semantic search across multiple telecom PDFs  
+- 🤖 AI-generated answers using Google Gemini  
+- 🌐 Automatic web search fallback (Tavily)  
+- 💬 Chat-style Streamlit interface  
+- ⚡ Fast and efficient retrieval using FAISS  
+
+---
+
+## 🧠 Architecture
+
+**Hybrid RAG + Web Search Fallback**
+
+User Question  
+↓  
+PDF Vector Store (FAISS)  
+↓  
+Relevant Context Found?  
+├─ Yes → Gemini → Answer  
+└─ No → Tavily Web Search → Gemini → Answer
+
+This design:
+- Prioritizes trusted internal knowledge
+- Reduces hallucinations
+- Ensures helpful answers even when PDFs lack data
+
+---
+
+## 📁 Project Structure
+
+.  
+├── app.py — Main Streamlit application  
+├── requirements.txt — Base dependencies  
+├── data/ — Telecom PDF manuals  
+│   ├── Lanka_Telecom_Data_2025.pdf  
+│   └── Tariff_2022_Dialog.pdf  
+└── .env — API keys (ignored by Git)
+
+---
+
+## 🚀 Features
+
+- 📄 **Multi-PDF ingestion** and semantic retrieval  
+- 🧩 **Chunking + embeddings** for accurate search  
+- 🤖 **Google Gemini LLM** for natural language answers  
+- 🌐 **Tavily web search fallback**  
+- 💬 **Persistent chat history**  
+- 🖥️ Clean and simple **Streamlit UI**
+
+---
+
+## 🛠️ Tech Stack
+
+- **Python 3.8+**  
+- **Streamlit** – Frontend UI  
+- **LangChain** – RAG orchestration  
+- **FAISS** – Vector database  
+- **HuggingFace Embeddings**  
+- **Google Gemini** – Large Language Model  
+- **Tavily** – Web search API  
+- **python-dotenv** – Environment variable handling
+
+---
+
+## 📦 Installation
+
+### 1️⃣ Create Virtual Environment
+
+```bash
+python -m venv .venv
+source .venv/bin/activate   # Windows: .venv\\Scripts\\activate
+```
+
+### 2️⃣ Install Dependencies
+
+```bash
+pip install -r requirements.txt
+pip install streamlit python-dotenv google-generativeai \
+	langchain_community langchain_text_splitters \
+	langchain_huggingface faiss-cpu huggingface-hub
+```
+
+### ⚙️ Configuration
+
+Create a `.env` file in the project root:
+
+```env
+GOOGLE_API_KEY=your_google_api_key_here
+TAVILY_API_KEY=your_tavily_api_key_here
+```
+
+⚠️ The application will stop if these keys are missing.
+
+### ▶️ Running the Application
+
+Place telecom PDF manuals inside the `data/` folder
+
+Start the Streamlit app:
+
+```bash
+streamlit run app.py
+```
+
+Open the browser URL shown (usually http://localhost:8501)
+
+Ask your telecom-related questions 🎧
+
+---
+
+## 🔍 How It Works
+
+- PDFs are loaded using `PyPDFLoader`  
+- Documents are split into chunks  
+- Embeddings are generated using HuggingFace models  
+- FAISS stores vectors for fast similarity search  
+- Gemini generates answers from retrieved context  
+- If no relevant context exists → Tavily web search is used
+
+---
+
+## 🧯 Troubleshooting
+
+- Missing API keys → Check `.env` file  
+- No PDFs found → Ensure files are placed in `data/`  
+- FAISS installation issues → Use `faiss-cpu` unless GPU support is configured
+
+---
+
+## 🧩 Future Enhancements
+
+- Dependency version pinning  
+- Confidence scoring for answers  
+- Cloud deployment (Streamlit Cloud / HuggingFace Spaces)  
+- Authentication for enterprise use  
+- CI/CD pipeline integration  
+- UI improvements and analytics dashboard
+
+---
+
+## 📌 Project Summary (CV / LinkedIn Ready)
+
+Developed a Hybrid RAG-based Telecom Support Assistant that answers customer queries using internal PDF manuals with an intelligent web search fallback, built using Streamlit, LangChain, Google Gemini, and FAISS.
+
+⭐ If you find this project useful, please star the repository and feel free to contribute!
 
 ## Summary
 
